@@ -1,34 +1,47 @@
-from handlers import (parse_input, add_contact, change_contact,
-                      show_phone, show_all, add_birthday, show_birthday, birthdays)
+from handlers import (
+    parse_input,
+    add_contact,
+    change_contact,
+    show_phone,
+    show_all,
+    add_birthday,
+    show_birthday,
+    birthdays,
+)
 from utils.backup import save_data
+from colorama import Fore, Style
+
+
+def colored_print(*args):
+    print(Fore.YELLOW, *args, Fore.RESET, sep='')
 
 
 def run_assistant(book):
     print("Welcome to the assistant bot!")
     while True:
-        user_input = input("Enter a command: ")
+        user_input = input(f"{Fore.GREEN}Enter a command: {Fore.RESET}")
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit"]:
             if book:
                 save_data(book)
-            print("Good bye!")
+            colored_print("Good bye!")
             break
         elif command == "hello":
-            print("How can I help you?")
+            colored_print("How can I help you?")
         elif command == "add":
-            print(add_contact(args, book))
+            colored_print(add_contact(args, book))
         elif command == "change":
-            print(change_contact(args, book))
+            colored_print(change_contact(args, book))
         elif command == "phone":
-            print(show_phone(args, book))
+            colored_print(show_phone(args, book))
         elif command == "all":
-            print(show_all(book))
-        elif command == 'add-birthday':
-            print(add_birthday(args, book))
-        elif command == 'show-birthday':
-            print(show_birthday(args, book))
-        elif command == 'birthdays':
-            print(birthdays(book))
+            colored_print(show_all(book))
+        elif command == "add-birthday":
+            colored_print(add_birthday(args, book))
+        elif command == "show-birthday":
+            colored_print(show_birthday(args, book))
+        elif command == "birthdays":
+            colored_print(birthdays(book))
         else:
-            print("Invalid command.")
+            colored_print("Invalid command.")
