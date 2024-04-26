@@ -13,7 +13,7 @@ from colorama import Fore, Style
 
 
 def colored_print(*args):
-    print(Fore.YELLOW, *args, Fore.RESET, sep='')
+    print(Fore.YELLOW, *args, Fore.RESET, sep="")
 
 
 def run_assistant(book):
